@@ -20,11 +20,8 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { Content, ErrorPanel, Header, Page } from '@backstage/core-components';
+import { Content, Header, Page } from '@backstage/core-components';
 import { useNavigate, useParams } from 'react-router-dom';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   scaffolderApiRef,
@@ -42,8 +39,7 @@ import qs from 'qs';
 import { ContextMenu } from './ContextMenu';
 import {
   DefaultTemplateOutputs,
-  TaskLogStream,
-  TaskSteps,
+  TaskStream,
 } from '@backstage/plugin-scaffolder-react/alpha';
 import { useAsync } from '@react-hookz/web';
 import { usePermission } from '@backstage/plugin-permission-react';
@@ -177,16 +173,6 @@ function OngoingTaskContent(props: {
     return entityPresentationApi.forEntity(templateEntityRef).promise;
   }, [entityPresentationApi, taskStream.task?.spec.templateInfo?.entityRef]);
 
-  const activeStep = useMemo(() => {
-    for (let i = steps.length - 1; i >= 0; i--) {
-      if (steps[i].status !== 'open') {
-        return i;
-      }
-    }
-
-    return 0;
-  }, [steps]);
-
   const isRetryableTask =
     taskStream.task?.spec.EXPERIMENTAL_recovery?.EXPERIMENTAL_strategy ===
     'startOver';
@@ -276,86 +262,8 @@ function OngoingTaskContent(props: {
         />
       </Header>
       <Content className={classes.contentWrapper}>
-        {taskStream.error ? (
-          <Box paddingBottom={2}>
-            <ErrorPanel
-              error={taskStream.error}
-              titleFormat="markdown"
-              title={taskStream.error.message}
-            />
-          </Box>
-        ) : null}
-
-        <Box paddingBottom={2}>
-          <TaskSteps
-            steps={steps}
-            activeStep={activeStep}
-            isComplete={taskStream.completed}
-            isError={Boolean(taskStream.error)}
-          />
-        </Box>
-
+        <TaskStream steps={steps} logs={taskStream.stepLogs} />
         <Outputs output={taskStream.output} />
-
-        {buttonBarVisible ? (
-          <Box paddingBottom={2}>
-            <Paper>
-              <Box padding={2}>
-                <div className={classes.buttonBar}>
-                  <Button
-                    className={classes.cancelButton}
-                    disabled={
-                      !cancelEnabled ||
-                      (cancelStatus !== 'not-executed' && !isRetryableTask) ||
-                      !canCancelTask
-                    }
-                    onClick={triggerCancel}
-                    data-testid="cancel-button"
-                  >
-                    {t('ongoingTask.cancelButtonTitle')}
-                  </Button>
-                  {isRetryableTask && (
-                    <Button
-                      className={classes.retryButton}
-                      disabled={cancelEnabled || !canRetry}
-                      onClick={triggerRetry}
-                      data-testid="retry-button"
-                    >
-                      {t('ongoingTask.retryButtonTitle')}
-                    </Button>
-                  )}
-                  <Button
-                    className={classes.logsVisibilityButton}
-                    color="primary"
-                    variant="outlined"
-                    onClick={() => setLogVisibleState(!logsVisible)}
-                  >
-                    {logsVisible
-                      ? t('ongoingTask.hideLogsButtonTitle')
-                      : t('ongoingTask.showLogsButtonTitle')}
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    disabled={cancelEnabled || !canStartOver}
-                    onClick={startOver}
-                    data-testid="start-over-button"
-                  >
-                    {t('ongoingTask.startOverButtonTitle')}
-                  </Button>
-                </div>
-              </Box>
-            </Paper>
-          </Box>
-        ) : null}
-
-        {logsVisible ? (
-          <Paper style={{ height: '100%' }}>
-            <Box padding={2} height="100%">
-              <TaskLogStream logs={taskStream.stepLogs} />
-            </Box>
-          </Paper>
-        ) : null}
       </Content>
     </>
   );

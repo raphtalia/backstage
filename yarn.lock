@@ -7569,6 +7569,7 @@ __metadata:
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
     "@material-ui/lab": "npm:4.0.0-alpha.61"
+    "@melloware/react-logviewer": "npm:^6.3.2"
     "@react-hookz/web": "npm:^24.0.0"
     "@rjsf/core": "npm:5.23.2"
     "@rjsf/material-ui": "npm:5.23.2"
@@ -11675,6 +11676,21 @@ __metadata:
     "@types/react": ">=16"
     react: ">=16"
   checksum: 10/cf89d6392c76091622fb647f205e1ab5cbdf5edd4401dde7092138cefc9fbb6d61428aa63557de0bccca3695d5a8854dd4a93b34a27cb8e27369da7eaeaa3e73
+  languageName: node
+  linkType: hard
+
+"@melloware/react-logviewer@npm:^6.3.2":
+  version: 6.3.2
+  resolution: "@melloware/react-logviewer@npm:6.3.2"
+  dependencies:
+    hotkeys-js: "npm:3.13.15"
+    mitt: "npm:3.0.1"
+    react-string-replace: "npm:1.1.1"
+    virtua: "npm:0.41.5"
+  peerDependencies:
+    react: ">=17.0.0"
+    react-dom: ">=17.0.0"
+  checksum: 10/1b6b49bbff96cfd525b577b40179228fa73a209099c2e732c65e7805d6f9552093c75f4fa9d6f49091733f112955940ceb807db56ed5fce675cfb88c4859efee
   languageName: node
   linkType: hard
 
@@ -33935,6 +33951,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hotkeys-js@npm:3.13.15":
+  version: 3.13.15
+  resolution: "hotkeys-js@npm:3.13.15"
+  checksum: 10/f10314bd171c5b265d923e8eae3b0c4d96899a46f956caa6468e8c5c4d1755a08f3986d7ece9f331d783ae1876d535e9471330176d27a5e06568b3e7f7cb7c4a
+  languageName: node
+  linkType: hard
+
 "hpack.js@npm:^2.1.6":
   version: 2.1.6
   resolution: "hpack.js@npm:2.1.6"
@@ -39783,6 +39806,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mitt@npm:3.0.1":
+  version: 3.0.1
+  resolution: "mitt@npm:3.0.1"
+  checksum: 10/287c70d8e73ffc25624261a4989c783768aed95ecb60900f051d180cf83e311e3e59865bfd6e9d029cdb149dc20ba2f128a805e9429c5c4ce33b1416c65bbd14
+  languageName: node
+  linkType: hard
+
 "mkdirp-classic@npm:^0.5.2, mkdirp-classic@npm:^0.5.3":
   version: 0.5.3
   resolution: "mkdirp-classic@npm:0.5.3"
@@ -44646,6 +44676,13 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
   checksum: 10/f59f86aca0797e389698fc20a7e88a26748e00e56e011dd6d9f7a4fa1ba7fda32083bc8e5f2af000957d20ad9f4c74dd151cb667b958dcac8f3959d860905fd4
+  languageName: node
+  linkType: hard
+
+"react-string-replace@npm:1.1.1":
+  version: 1.1.1
+  resolution: "react-string-replace@npm:1.1.1"
+  checksum: 10/75cedb24ae7f37ec3e3adbf393cc65842609ff5901ec3423048bb60a90681783544e6feeca276c8954e1136e3b1560a9535325878ec3bddd75b80b9220980648
   languageName: node
   linkType: hard
 
@@ -50349,6 +50386,30 @@ __metadata:
     remove-trailing-separator: "npm:^1.0.1"
     replace-ext: "npm:^1.0.0"
   checksum: 10/6f7c034381afbfd2fd3d09d75a7275f232a00e623f84e9f7fd3569015110f7d03b7535e6c9e6dd0166e1cee6d490182a25aa17a95db1c6aab6d066561466fb49
+  languageName: node
+  linkType: hard
+
+"virtua@npm:0.41.5":
+  version: 0.41.5
+  resolution: "virtua@npm:0.41.5"
+  peerDependencies:
+    react: ">=16.14.0"
+    react-dom: ">=16.14.0"
+    solid-js: ">=1.0"
+    svelte: ">=5.0"
+    vue: ">=3.2"
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+    solid-js:
+      optional: true
+    svelte:
+      optional: true
+    vue:
+      optional: true
+  checksum: 10/c9b16586aab1ff2f19061c16e2ac8d6eb976b44922e297a020616aeada36d55420f796b1e90304a70a85579b21523ff55bbeab61b60d05b139244eb619dc0e19
   languageName: node
   linkType: hard
 
